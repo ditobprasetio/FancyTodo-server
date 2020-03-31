@@ -17,7 +17,11 @@ class TodoController{
   }
 
   static display(req, res, next) {
-    Todo.findAll()
+    Todo.findAll({
+      where: {
+        UserId: req.currentUserId
+      }
+    })
     .then((todo) => {
       res.status(200).json(todo)
     })
