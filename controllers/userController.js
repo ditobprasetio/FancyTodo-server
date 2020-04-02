@@ -1,28 +1,29 @@
 const { User } = require('../models')
 const { getToken } = require('../helper/jwt')
 const { comparePassword } = require('../helper/bcrypt')
+const { OAuth2Client } = require('google-auth-library');
 
-class UserController{
+class UserController {
   static register(req, res, next) {
-    let { name, email, password} = req.body
+    let { name, email, password } = req.body
     User.create({
       name,
       email,
       password
     })
-    .then((user) => {
-      let payload = {
-        id: user.id,
-        name: user.name,
-        email: user.email
-      }
-      let token = getToken(payload)
-      res.status(201).json({ 
-        name: user.name,
-        token 
+      .then((user) => {
+        let payload = {
+          id: user.id,
+          name: user.name,
+          email: user.email
+        }
+        let token = getToken(payload)
+        res.status(201).json({
+          name: user.name,
+          token
+        })
       })
-    })
-    .catch(next)
+      .catch(next)
   }
 
   static login(req, res, next) {
@@ -31,28 +32,77 @@ class UserController{
         email: req.body.email
       }
     })
-    .then((user) => {
-      if(user) {
-        let status = comparePassword(req.body.password, user.password)
-        if(status) {
-          let payload = {
-            id: user.id,
-            name: user.name,
-            email: user.email
+      .then((user) => {
+        if (user) {
+          let status = comparePassword(req.body.password, user.password)
+          if (status) {
+            let payload = {
+              id: user.id,
+              name: user.name,
+              email: user.email
+            }
+            let token = getToken(payload)
+            res.status(200).json({
+              name: user.name,
+              token
+            })
           }
-          let token = getToken(payload)
-          res.status(200).json({ 
-            name: user.name,
-            token 
-          })
+          else {
+            next({ name: 'email or password wrong' })
+          }
         }
         else {
           next({ name: 'email or password wrong' })
         }
+      })
+      .catch(next)
+  }
+
+  static googleLogin(req, res, next) {
+    let obj = {}
+    const token = req.headers.token
+    const client = new OAuth2Client(process.env.CLIENT_ID);
+    client.verifyIdToken({
+      idToken: token,
+      audience: process.env.CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+      // Or, if multiple clients access the backend:
+      //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+    })
+    .then((ticket) => {
+      let payload = ticket.getPayload()
+      obj.email = payload.email
+      return User.findOne({
+        where: {
+          email: obj.email
+        }
+      })
+    })
+    .then((user) => {
+      if(!user) {
+        let arr = []
+        let email = obj.email
+        arr = email.split('@')
+        let name = arr[0]        
+        return User.create({
+          name,
+          email,
+          password: process.env.DEFAULTPASSWORD
+        })
       }
       else {
-        next({ name: 'email or password wrong' })
+        return user
       }
+    })
+    .then((user) => {
+      let payload = {
+        id: user.id,
+        name: user.name,
+        email: user.email
+      }
+      let token = getToken(payload)
+      res.status(200).json({
+        name: user.name, 
+        token})
     })
     .catch(next)
   }
