@@ -3,6 +3,8 @@
 
 **Base URL**
 
+https://thawing-basin-47514.herokuapp.com
+
 http://localhost:3000
 
 # Todos
@@ -66,7 +68,16 @@ http://localhost:3000
 * **Sample Call:**
 
   ```javascript
-   
+    $.ajax({
+      method: 'POST',
+      url: `https://thawing-basin-47514.herokuapp.com/todos`,
+      headers: {
+        token: localStorage.getItem('token')
+      },
+      data: {
+        title, description, status, due_date
+      }
+    })
   ```
 
 ----
@@ -127,6 +138,13 @@ http://localhost:3000
 * **Sample Call:**
 
   ```javascript
+  $.ajax({
+    method: 'GET',
+    url: 'https://thawing-basin-47514.herokuapp.com/todos',
+    headers: {
+      token: localStorage.getItem('token')
+    }
+  })
   
   ```
 
@@ -182,7 +200,13 @@ http://localhost:3000
 * **Sample Call:**
 
   ```javascript
-    
+    $.ajax({
+      method: 'GET',
+      url: `https://thawing-basin-47514.  herokuapp.com/todos/${id}`,
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
   ```
 
 ----
@@ -257,7 +281,16 @@ http://localhost:3000
 * **Sample Call:**
 
   ```javascript
-    
+    $.ajax({
+      method: 'PUT',
+      url: `https://thawing-basin-47514.herokuapp.com/todos/${id}`,
+      headers: {
+        token: localStorage.getItem('token')
+      },
+      data: {
+        title, description, status, due_date
+      }
+    })
   ```
 
 ----
@@ -323,7 +356,13 @@ http://localhost:3000
 * **Sample Call:**
 
   ```javascript
-    
+  $.ajax({
+    method: "DELETE",
+    url: `https://thawing-basin-47514.herokuapp.com/todos/${id}`,
+    headers: {
+      token: localStorage.getItem('token')
+    }
+  })
   ```
 ---
 ---
@@ -377,7 +416,13 @@ http://localhost:3000
 * **Sample Call:**
 
   ```javascript
-   
+    $.ajax({
+      method: 'POST',
+      url: 'https://thawing-basin-47514.herokuapp.com/register',
+      data: {
+        name, email, password
+      }
+    })
   ```
 
 ----
@@ -434,7 +479,14 @@ http://localhost:3000
 * **Sample Call:**
 
   ```javascript
-   
+    $.ajax({
+      method: 'POST',
+      url: 'https://thawing-basin-47514.herokuapp.com/login',
+      data: {
+        email,
+        password
+      }
+    })
   ```
 
 ----
