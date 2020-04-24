@@ -54,8 +54,9 @@ http://localhost:3000
         "UserId": 1
       }
     }
+    ```
 
- 
+
 * **Error Response:**
 
   * **Code:** 400 <br />
@@ -128,8 +129,11 @@ http://localhost:3000
         "updatedAt": "2020-03-30T06:13:15.897Z"
       }
     ]
+    ```
   ```
- 
+  
+  ```
+
 * **Error Response:**
 
   * **Code:** 500 <br />
@@ -164,7 +168,7 @@ http://localhost:3000
 *  **URL Params**
 
    **Required:**
- 
+
    `id=[integer]`
 
 * **Data Params**
@@ -186,7 +190,8 @@ http://localhost:3000
     "createdAt": "2020-03-30T05:56:08.893Z",
     "updatedAt": "2020-03-30T05:56:08.893Z"
   }
- 
+```
+    
 * **Error Response:**
 
   * **Code:** 404 NOT FOUND <br />
@@ -226,7 +231,7 @@ http://localhost:3000
 *  **URL Params**
 
    **Required:**
- 
+
    `id=[integer]`
 
 * **Data Params**
@@ -258,6 +263,7 @@ http://localhost:3000
         "updatedAt": "2020-03-30T06:56:15.735Z"
       }
     }
+    ```
 
 * **Error Response:**
 
@@ -309,7 +315,7 @@ http://localhost:3000
 *  **URL Params**
 
   * **Required:**
- 
+
    `id=[integer]`
 
 * **Data Params**
@@ -331,7 +337,8 @@ http://localhost:3000
       "createdAt": "2020-03-30T07:09:20.191Z",
       "updatedAt": "2020-03-30T07:09:20.191Z"
     }
- 
+    ```
+
 * **Error Response:**
 
   * **Code:** 404 NOT FOUND <br />
@@ -403,7 +410,8 @@ http://localhost:3000
     {
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9. eyJpZCI6MSwibmFtZSI6InRlc3RlciIsImVtYWlsIjoidGVzdEBtYWlsLmNvbSIsImlhdCI6MTU4 NTU1MzQyMX0.yI9e8Ek5xW8Qm2hBla1HQwJ8YRbxbSiVy9fgv2EEBGA"
     }
- 
+    ```
+
 * **Error Response:**
 
   * **Code:** 400 <br />
@@ -427,7 +435,7 @@ http://localhost:3000
 
 ----
 ----
-***Logim***
+***Login***
 ----
   Returns User.
 
@@ -461,7 +469,8 @@ http://localhost:3000
     {
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9. eyJpZCI6MSwibmFtZSI6InRlc3RlciIsImVtYWlsIjoidGVzdEBtYWlsLmNvbSIsImlhdCI6MTU4 NTU1MzQyMX0.yI9e8Ek5xW8Qm2hBla1HQwJ8YRbxbSiVy9fgv2EEBGA"
     }
- 
+    ```
+
 * **Error Response:**
 
   * **Code:** 400 <br />

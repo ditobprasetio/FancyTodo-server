@@ -6,11 +6,31 @@ module.exports = (sequelize, DataTypes) => {
     // attributes
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'title is required'
+        },
+        notNull: {
+          args: true,
+          msg: 'title is required'
+        }
+      }
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'description is required'
+        },
+        notNull: {
+          args: true,
+          msg: 'description is required'
+        }
+      }
     },
     status: {
       type: DataTypes.BOOLEAN,
@@ -23,6 +43,14 @@ module.exports = (sequelize, DataTypes) => {
         isAfter: {
           args: `${new Date().toLocaleDateString()}`,
           msg: "The date entered is already past"
+        },
+        notEmpty: {
+          args: true,
+          msg: 'due date is required'
+        },
+        notNull: {
+          args: true,
+          msg: 'due date is required'
         }
       }
     },
